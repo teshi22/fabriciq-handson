@@ -152,7 +152,7 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
 アイテムを作成できない場合は、使用する Fabric 容量の稼働状態・割り当てと、対象アイテムのテナント設定も主催者に確認してもらってください。
 
-出典：[ワークスペースの作成・容量への割り当て](https://learn.microsoft.com/en-us/fabric/fundamentals/create-workspaces)、[容量の割り当て権限](https://learn.microsoft.com/en-us/fabric/governance/onelake-catalog-capacities#manage-capacity-settings)。
+出典：[ワークスペースの作成・容量への割り当て](https://learn.microsoft.com/ja-jp/fabric/fundamentals/create-workspaces)、[容量の割り当て権限](https://learn.microsoft.com/ja-jp/fabric/governance/onelake-catalog-capacities#manage-capacity-settings)。
 
 ## 2. レイクハウスの作成
 
@@ -261,7 +261,7 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 この手順では、セマンティックモデルを作成せず、前の手順で用意したレイクハウスのテーブルを直接使用します。
 単一テーブルの集計に続き、2つのテーブルを案件番号で関連付ける必要がある質問も試します。
 
-> 「情報を与えない」とは、利用者が定義書や列の説明を追加しないという意味です。エージェントがスキーマを参照しないわけではありません。エージェントは、選択したデータソースの参照可能なスキーマ・メタデータを利用してクエリを生成します。参考：[データエージェントの仕組み](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent#how-the-fabric-data-agent-works)。
+> 「情報を与えない」とは、利用者が定義書や列の説明を追加しないという意味です。エージェントがスキーマを参照しないわけではありません。エージェントは、選択したデータソースの参照可能なスキーマ・メタデータを利用してクエリを生成します。参考：[データエージェントの仕組み](https://learn.microsoft.com/ja-jp/fabric/data-science/concept-data-agent#how-the-fabric-data-agent-works)。
 
 ### データエージェントの作成
 
@@ -722,6 +722,10 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
 ### 案件テーブルをバインドする
 
+> **注意：後の Graph 作成に備え、データソースにはレイクハウスのテーブルを使用してください。** 現在、セマンティックモデルにデータをバインドしたエンティティ型は、Graph への投影に対応していません。本演習では `sales_semantic_model` ではなく、`handson_lakehouse` の Delta テーブル（`dbo.deals`・`dbo.sales_reports`）をそれぞれのエンティティにバインドします。
+>
+> 参考：[Microsoft Learn：オントロジーから Graph を実体化する — 制限事項](https://learn.microsoft.com/ja-jp/fabric/iq/ontology/how-to-use-ontology-graph#limitations) の「サポートされていないデータソース」を参照してください。
+
 1. **プロパティ バインド** 画面の **追加** を選択します。
 
    ![プロパティバインド画面でデータソースを追加する画面](./images/handson/fabric-ontology-add-property-binding-source.png)
@@ -925,9 +929,11 @@ WHERE d.order_date IS NOT NULL
 
 オントロジー **`sales_ontology`** から Graph を実体化し、**SalesReport → ReportsOn → SalesDeal** の関係を実データで確認します。前の演習の「オントロジーを追加したデータエージェントによる SQL 実行」とは別に、Graph のクエリ画面で案件と営業報告のつながりを調べます。
 
+> **リレーションシップを含む Graph の作成には、リレーションシップのデータバインドが必要です。** エンティティ型をテーブルにバインドし、リレーションシップの名前や接続元・接続先を定義するだけでは不十分です。リレーションシップにも、どの実データからエッジを作成するかを設定します。データソースにバインドされていないリレーションシップは、Graph の投影対象として選択できません。
+
 ### リレーションシップをマッピングテーブル方式に変更する
 
-この節では、画像に合わせて **ReportsOn のマッピングテーブルをオン** にします。ただし、新しいテーブルは作成しません。既存の **`dbo.sales_reports`** に報告番号と案件番号の両方があるため、このテーブルを関係の対応表として使用します。
+このハンズオンで `ReportsOn` のデータバインドを設定するには、**「マッピング テーブルを使用しますか？」をオンにする必要があります。** ただし、新しいテーブルは作成しません。既存の **`dbo.sales_reports`** に報告番号と案件番号の両方があるため、このテーブルを関係の対応表として使用します。
 
 1. **sales_ontology** を開き、**ReportsOn** のリレーションシップの詳細を開きます。
 2. **マッピング テーブルを使用しますか？** を **オン** にし、次の内容を設定します。
@@ -1065,7 +1071,7 @@ WHERE d.order_date IS NOT NULL
 
 元データやオントロジーの設定を変更した場合は、Graph 側への反映・更新状態を確認してから再実行します。公開・共有や、他の受講生へのアクセス権追加は不要です。
 
-参考：[Microsoft Learn：オントロジーから Graph を実体化する](https://learn.microsoft.com/en-us/fabric/iq/ontology/how-to-use-ontology-graph)
+参考：[Microsoft Learn：オントロジーから Graph を実体化する](https://learn.microsoft.com/ja-jp/fabric/iq/ontology/how-to-use-ontology-graph)
 
 ## 10. Graph を使ったデータエージェントの確認（不具合発生のため参考）
 
@@ -1172,6 +1178,6 @@ Graph の **SalesReport → ReportsOn → SalesDeal** を使って営業報告�
 
 参考：
 
-- [Microsoft Learn：データエージェントの対応データソースと Graph の設定](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-add-datasources?tabs=gql)
-- [Microsoft Learn：Graph のコードエディターで GQL を実行する](https://learn.microsoft.com/en-us/fabric/graph/tutorial-query-code-editor)
-- [Fabric Community：直接 GQL は動くが、データエージェントでは結果を取得できない類似報告](https://community.fabric.microsoft.com/discussions/fiq_iq/data-agent-gives-correct-gql-query-but-is-unable-to-give-output/5207557)
+- [Microsoft Learn：データエージェントの対応データソースと Graph の設定](https://learn.microsoft.com/ja-jp/fabric/data-science/data-agent-add-datasources?tabs=gql)
+- [Microsoft Learn：Graph のコードエディターで GQL を実行する](https://learn.microsoft.com/ja-jp/fabric/graph/tutorial-query-code-editor)
+- [Fabric Community（英語）：直接 GQL は動くが、データエージェントでは結果を取得できない類似報告](https://community.fabric.microsoft.com/discussions/fiq_iq/data-agent-gives-correct-gql-query-but-is-unable-to-give-output/5207557)
