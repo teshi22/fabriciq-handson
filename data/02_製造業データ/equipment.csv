@@ -1,0 +1,6 @@
+equipment_id,equipment_name,equipment_type,location
+EQ-001,設備A,研削盤,第1工場・ライン1
+EQ-002,設備B,研削盤,第1工場・ライン2
+EQ-003,設備C,熱処理炉,第1工場・熱処理エリア
+EQ-004,設備D,組立機,第2工場・ライン1
+EQ-005,設備E,検査機,第2工場・検査エリア

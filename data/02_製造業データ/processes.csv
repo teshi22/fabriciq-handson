@@ -1,0 +1,6 @@
+process_id,process_name,department,standard_minutes
+PROC-001,切削,第一製造課,30
+PROC-002,熱処理,第一製造課,120
+PROC-003,研削,第一製造課,60
+PROC-004,組立,第二製造課,45
+PROC-005,検査,品質管理課,20
