@@ -1,6 +1,0 @@
-qa_id,カテゴリ,質問,想定回答,参照テーブル
-QA-001,不良の特定,製品Aの研削工程で発生した寸法不良（DEF-001）はどのロット・設備・日時に関係しますか？,LOT-002・設備A。工程処理は2026-10-01の09:00以上10:00未満で不良発生は09:30（日本時間）。,defects・manufacturing_records・products・processes・equipment
-QA-002,後続ロット調査,DEF-001の発生ロット以降に同じ製品・同じ工程で処理したロットを起点込みで設備を問わず最新まで挙げてください。,LOT-002・LOT-003・LOT-004の3ロット。LOT-001は起点より前でLOT-005は製品が異なるため除外。LOT-004は別設備かつ設備Aの復旧後でも後続ロットの条件を満たす。影響確定ではなく調査候補。,defects・manufacturing_records
-QA-003,設備異常との関連,設備Aの主軸振動異常（ANOM-001）と寸法不良（DEF-001）に関係はありますか？,同じ設備Aを使用し不良発生の09:30は異常期間09:00以上11:00未満に含まれる。製造時間帯も重なるため設備・時間の関連はあるが原因とは断定できない。,equipment_anomalies・equipment・manufacturing_records・defects
-QA-004,異常期間のロット調査,設備Aの異常ANOM-001の期間中に同じ設備で工程処理したロットを製品を問わず挙げてください。,LOT-002・LOT-003の2ロット。LOT-001は異常開始時点で処理完了。LOT-004は別設備。LOT-005は復旧後。,equipment_anomalies・manufacturing_records
-QA-005,関連しない事例,DEF-001と設備異常ANOM-002・ANOM-003・ANOM-004・ANOM-005には設備・時間の一致がありますか？,いずれも両方は一致しない。ANOM-002とANOM-005は同じ設備だが時間が異なりANOM-003とANOM-004は同じ時間帯だが設備が異なる。データ上の一致がないだけで無関係や安全を証明するものではない。,equipment_anomalies・manufacturing_records・defects
