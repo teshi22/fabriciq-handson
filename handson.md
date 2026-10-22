@@ -131,7 +131,7 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
 | アイテム | 名前 |
 | --- | --- |
-| レイクハウス | `handson_lakehouse` |
+| レイクハウス | `sales_lakehouse` |
 | セマンティックモデル（営業） | `sales_semantic_model` |
 | オントロジー（営業） | `sales_ontology` |
 | Graph（営業・自動生成） | `sales_ontology_graph_...`（末尾は自動生成） |
@@ -141,6 +141,8 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 | データエージェント（Graph） | `sales_agent_graph` |
 
 テーブルは自分のレイクハウス内に作成します。
+
+> 画面例には変更前のレイクハウス名 `handson_lakehouse` が表示されている場合があります。以降の操作では、すべて `sales_lakehouse` に読み替えてください。
 
 ### アクセス権の注意
 
@@ -156,7 +158,7 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
 ## 2. レイクハウスの作成
 
-演習で使用する CSV データを取り込むために、自分のワークスペース内にレイクハウス **`handson_lakehouse`** を作成します。各自のワークスペースが異なれば、受講生全員が同じレイクハウス名を使用できます。
+演習で使用する CSV データを取り込むために、自分のワークスペース内にレイクハウス **`sales_lakehouse`** を作成します。各自のワークスペースが異なれば、受講生全員が同じレイクハウス名を使用できます。
 
 ### 操作手順
 
@@ -172,22 +174,22 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
    | 項目 | 設定内容 |
    | --- | --- |
-   | 名前 | `handson_lakehouse` |
+   | 名前 | `sales_lakehouse` |
    | 場所 | 自分で作成したワークスペース（例：`fabriciq-handson-yamada`） |
    | レイクハウス スキーマ | 画像と同じく、チェックを入れたままにします |
 
-   > レイクハウス名は画像と同じ `handson_lakehouse` を使用します。画像のワークスペース名 `handson-workspace-miyata` は表示例です。場所は自分のワークスペースを選択してください。
+   > レイクハウス名は画像と異なり、`sales_lakehouse` を入力してください。画像のワークスペース名 `handson-workspace-miyata` は表示例です。場所は自分のワークスペースを選択してください。
 
    ![新しいレイクハウスの名前・作成先・スキーマの設定と「作成」ボタン](./images/handson/fabric-lakehouse-create-settings.png)
 
 4. **作成（Create）** を選択し、レイクハウスの作成が完了するまで待ちます。
-5. レイクハウスの画面が開いたら、名前が **`handson_lakehouse`** であることと、エクスプローラーに **Tables（テーブル）** と **Files（ファイル）** が表示されることを確認します。ワークスペースの一覧に戻った場合も、自分のワークスペース内に `handson_lakehouse` が作成されていることを確認してください。
+5. レイクハウスの画面が開いたら、名前が **`sales_lakehouse`** であることと、エクスプローラーに **Tables（テーブル）** と **Files（ファイル）** が表示されることを確認します。ワークスペースの一覧に戻った場合も、自分のワークスペース内に `sales_lakehouse` が作成されていることを確認してください。
 
 この段階ではレイクハウスは空の状態です。以降の演習では、このレイクハウスへデータを取り込みます。
 
 ## 3. データの読み込み
 
-営業データの2つの CSV を `handson_lakehouse` にアップロードし、それぞれをテーブルとして読み込みます。
+営業データの2つの CSV を `sales_lakehouse` にアップロードし、それぞれをテーブルとして読み込みます。
 
 **Files へのアップロード** と **Tables への読み込み** は別の操作です。Files は元の CSV を保存する場所で、Tables は分析に使用する Delta テーブルを管理する場所です。ファイルをアップロードしただけでは、テーブルは作成されません。
 
@@ -202,11 +204,11 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
 ### CSV ファイルのアップロード
 
-1. 自分のワークスペースの **`handson_lakehouse`** を開きます。左側のエクスプローラーで **Files** の **…** メニューを開き、**アップロード → ファイルのアップロード** を選択します。
+1. 自分のワークスペースの **`sales_lakehouse`** を開きます。左側のエクスプローラーで **Files** の **…** メニューを開き、**アップロード → ファイルのアップロード** を選択します。
 
    ![レイクハウスの Files メニューから「アップロード」「ファイルのアップロード」を選択する画面](./images/handson/fabric-lakehouse-files-upload-menu.png)
 
-2. **ファイルのアップロード** 画面で、フォルダーアイコンから保存済みの2つの CSV を選択します。選択欄に **`deals.csv`** と **`sales_reports.csv`** が表示され、アップロード先が自分のワークスペースの **`handson_lakehouse/Files/`** になっていることを確認し、**アップロード** を選択します。
+2. **ファイルのアップロード** 画面で、フォルダーアイコンから保存済みの2つの CSV を選択します。選択欄に **`deals.csv`** と **`sales_reports.csv`** が表示され、アップロード先が自分のワークスペースの **`sales_lakehouse/Files/`** になっていることを確認し、**アップロード** を選択します。
 
    ![deals.csv と sales_reports.csv を選択し、「アップロード」を実行する画面](./images/handson/fabric-lakehouse-csv-upload.png)
 
@@ -265,7 +267,7 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
 ### データエージェントの作成
 
-1. 自分のワークスペースの **`handson_lakehouse`** を開き、画面上部の **データ エージェントに追加 → 新しいデータ エージェント** を選択します。
+1. 自分のワークスペースの **`sales_lakehouse`** を開き、画面上部の **データ エージェントに追加 → 新しいデータ エージェント** を選択します。
 
    ![レイクハウスの「データ エージェントに追加」から「新しいデータ エージェント」を選択する画面](./images/handson/fabric-lakehouse-new-data-agent-menu.png)
 
@@ -273,11 +275,11 @@ No.9 の「佐藤さん」は、このデータでは「佐藤 恵」さんに�
 
    ![データエージェント名に sales_agent を入力して作成する画面](./images/handson/fabric-data-agent-create-sales-agent.png)
 
-3. データエージェントの編集画面が開いたら、左側の **ソース** で **handson_lakehouse → Schemas → dbo → Tables** を展開し、**`deals`** と **`sales_reports`** の両方にチェックが入っていることを確認します。
+3. データエージェントの編集画面が開いたら、左側の **ソース** で **sales_lakehouse → Schemas → dbo → Tables** を展開し、**`deals`** と **`sales_reports`** の両方にチェックが入っていることを確認します。
 
    ![sales_agent のソースでレイクハウスの deals と sales_reports を選択したテスト画面](./images/handson/fabric-data-agent-lakehouse-table-selection.png)
 
-   > レイクハウスが表示されていない場合は、**ソースの追加** から自分のワークスペースの `handson_lakehouse` を追加します。同じ名前でも、他の受講生のレイクハウスを選択しないでください。
+   > レイクハウスが表示されていない場合は、**ソースの追加** から自分のワークスペースの `sales_lakehouse` を追加します。同じ名前でも、他の受講生のレイクハウスを選択しないでください。
 
 4. この段階では、**エージェントの指示** や、テーブル・列の説明、質問と SQL の例を追加せず、そのまま次のテストへ進みます。
 
@@ -414,7 +416,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 前の演習は、**説明を追加しない状態での動作確認**です。ここからは任意の参考手順として、テーブルや列の意味をエージェントに補足する入力方法を紹介します。業務用語や略語、似た名前の金額項目など、列名だけでは判断しにくい内容を説明する際に使用します。
 
 1. **`sales_agent`** の編集画面で、左側のエクスプローラーの **セットアップ** タブを選択します。
-2. **`handson_lakehouse`** の配下にある **スキーマ オブジェクトの説明** を選択します。
+2. **`sales_lakehouse`** の配下にある **スキーマ オブジェクトの説明** を選択します。
 3. 右側で **Schemas → dbo → Tables → deals** を展開します。営業報告の説明を追加する場合は、同じように **sales_reports** を展開します。
 4. 説明を追加したいテーブルや列の行にある **鉛筆アイコン** を選択し、入力欄に意味や使い方を記載します。画像では、**`additional_flag`** 列の説明欄を開いています。
 5. 入力したら **Done** を選択して確定します。画像の列説明の入力欄は、最大 **500文字** です。
@@ -454,7 +456,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 # 役割
 
 あなたは、営業案件と営業活動の状況を分析するアシスタントです。
-接続された `handson_lakehouse` のデータを使用し、日本語で回答してください。
+接続された `sales_lakehouse` のデータを使用し、日本語で回答してください。
 
 # データの使い分け
 
@@ -513,7 +515,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
 ### モデルの作成とテーブルの選択
 
-1. 自分のワークスペースの **`handson_lakehouse`** を開き、画面上部の **新しいセマンティック モデル** を選択します。
+1. 自分のワークスペースの **`sales_lakehouse`** を開き、画面上部の **新しいセマンティック モデル** を選択します。
 
    ![レイクハウスの画面上部で「新しいセマンティック モデル」を選択する画面](./images/handson/fabric-lakehouse-new-semantic-model.png)
 
@@ -612,7 +614,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
    ![OneLake カタログでデータソースとして sales_semantic_model を選択する画面](./images/handson/fabric-data-agent-select-semantic-model.png)
 
-   > ここでは `handson_lakehouse` ではなく、**`sales_semantic_model`** を選択します。同名のアイテムが複数ある場合は、自分のワークスペースのモデルであることも確認してください。
+   > ここでは `sales_lakehouse` ではなく、**`sales_semantic_model`** を選択します。同名のアイテムが複数ある場合は、自分のワークスペースのモデルであることも確認してください。
 
 3. 左側の **ソース** で `sales_semantic_model` を展開し、**`deals`** と **`sales_reports`** の両方にチェックが入っていることを確認します。比較のため、このエージェントにはレイクハウスを直接追加せず、セマンティックモデルだけをデータソースにします。
 
@@ -685,8 +687,8 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
 | エンティティ型 | 意味 | バインドするテーブル | エンティティ型キー |
 | --- | --- | --- | --- |
-| `SalesDeal` | 営業案件。1件の案件を表す | `handson_lakehouse` の `dbo.deals` | `inquiry_no` |
-| `SalesReport` | 営業報告。1件の報告を表す | `handson_lakehouse` の `dbo.sales_reports` | `record_no` |
+| `SalesDeal` | 営業案件。1件の案件を表す | `sales_lakehouse` の `dbo.deals` | `inquiry_no` |
+| `SalesReport` | 営業報告。1件の報告を表す | `sales_lakehouse` の `dbo.sales_reports` | `record_no` |
 
 リレーションシップ名は **`ReportsOn`（報告対象）** とし、方向を **`SalesReport` → `SalesDeal`** にします。「この営業報告は、どの営業案件についての報告か」を表す関係です。
 
@@ -722,7 +724,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
 ### 案件テーブルをバインドする
 
-> **注意：後の Graph 作成に備え、データソースにはレイクハウスのテーブルを使用してください。** 現在、セマンティックモデルにデータをバインドしたエンティティ型は、Graph への投影に対応していません。本演習では `sales_semantic_model` ではなく、`handson_lakehouse` の Delta テーブル（`dbo.deals`・`dbo.sales_reports`）をそれぞれのエンティティにバインドします。
+> **注意：後の Graph 作成に備え、データソースにはレイクハウスのテーブルを使用してください。** 現在、セマンティックモデルにデータをバインドしたエンティティ型は、Graph への投影に対応していません。本演習では `sales_semantic_model` ではなく、`sales_lakehouse` の Delta テーブル（`dbo.deals`・`dbo.sales_reports`）をそれぞれのエンティティにバインドします。
 >
 > 参考：[Microsoft Learn：オントロジーから Graph を実体化する — 制限事項](https://learn.microsoft.com/ja-jp/fabric/iq/ontology/how-to-use-ontology-graph#limitations) の「サポートされていないデータソース」を参照してください。
 
@@ -730,9 +732,9 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
    ![プロパティバインド画面でデータソースを追加する画面](./images/handson/fabric-ontology-add-property-binding-source.png)
 
-2. OneLake カタログで、自分の **handson_lakehouse → dbo → deals** を選択し、**テーブルの選択** を選択します。ここでは `sales_semantic_model` ではなく、レイクハウスのテーブルを指定します。
+2. OneLake カタログで、自分の **sales_lakehouse → dbo → deals** を選択し、**テーブルの選択** を選択します。ここでは `sales_semantic_model` ではなく、レイクハウスのテーブルを指定します。
 
-   ![OneLake カタログで handson_lakehouse の dbo.deals を選択する画面](./images/handson/fabric-ontology-select-deals-table.png)
+   ![OneLake カタログで sales_lakehouse の dbo.deals を選択する画面](./images/handson/fabric-ontology-select-deals-table.png)
 
 3. **エンティティ型のプロパティ** で、プロパティ名・ソース列・プロパティの種類を確認します。画像のように、元の列名をそのままプロパティ名として使用します。
 
@@ -769,7 +771,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
    ![営業報告を表すエンティティ型 SalesReport を追加する画面](./images/handson/fabric-ontology-create-sales-report-entity.png)
 
-2. **SalesDeal** と同じ手順で **エンティティ型の詳細を表示 → データからプロパティを追加 → 追加** と進みます。今度は **handson_lakehouse → dbo → sales_reports** を選択し、プロパティをバインドします。
+2. **SalesDeal** と同じ手順で **エンティティ型の詳細を表示 → データからプロパティを追加 → 追加** と進みます。今度は **sales_lakehouse → dbo → sales_reports** を選択し、プロパティをバインドします。
 3. プロパティに **`record_no`**、**`inquiry_no`**、**`purpose`**、**`report_date`**、**`reporter`** などが含まれることを確認し、**作成する** を選択します。
 4. **エンティティ型キーの定義** で **`record_no`** を選択し、保存します。
 
@@ -848,7 +850,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
    | --- | --- |
    | オントロジー | `sales_ontology` が表示されている |
    | エンティティ型 | `SalesDeal` と `SalesReport` の両方にチェックが入っている |
-   | オントロジー データ ソース | バインド先の `handson_lakehouse` が表示されている |
+   | オントロジー データ ソース | バインド先の `sales_lakehouse` が表示されている |
 
    > 後の回答画像では、オントロジーと、そのバインド先のレイクハウスが別の欄に表示されています。**「オントロジー データ ソース」にレイクハウスがあることは、オントロジーを追加していないという意味ではありません。** この演習では、「他のデータ ソース」へレイクハウスやセマンティックモデルを別途追加する必要はありません。
 
@@ -875,7 +877,7 @@ SQL が完全に同じでなくても、`EXISTS` などで同じキーと条件�
 
 ### 生成された SQL を確認する
 
-回答の下にある実行手順を展開し、**handson_lakehouse レイクハウスを分析しました → 実行と出力** を開きます。クエリの入力が非表示の場合は、表示を切り替えてください。
+回答の下にある実行手順を展開し、**sales_lakehouse レイクハウスを分析しました → 実行と出力** を開きます。クエリの入力が非表示の場合は、表示を切り替えてください。
 
 ![オントロジーを追加したエージェントが、レイクハウスに対して EXISTS を使った SQL を生成した画面](./images/handson/fabric-data-agent-ontology-generated-sql.png)
 
@@ -943,7 +945,7 @@ WHERE d.order_date IS NOT NULL
    | 元のエンティティ型 | `SalesReport` |
    | 元のプロパティ | `record_no` |
    | リレーションシップ名 | `ReportsOn` |
-   | マッピングテーブル | `handson_lakehouse` の `dbo.sales_reports` |
+   | マッピングテーブル | `sales_lakehouse` の `dbo.sales_reports` |
    | SalesReport との一致：record_no | マッピングテーブルの `record_no` |
    | SalesDeal との一致：inquiry_no | マッピングテーブルの `inquiry_no` |
    | ターゲット エンティティ型 | `SalesDeal` |
@@ -1097,7 +1099,7 @@ WHERE d.order_date IS NOT NULL
 
    ![データソースの追加画面で sales_ontology_graph_... のグラフモデルを選択する画面](./images/handson/fabric-data-agent-select-graph-model.png)
 
-   > 末尾の識別子は自動生成されるため、画像と一致する必要はありません。一覧には他の演習のアイテムも表示されていますが、`sales_semantic_model` や `handson_lakehouse`、製造業の Graph ではなく、自分の営業データの Graph を選択します。
+   > 末尾の識別子は自動生成されるため、画像と一致する必要はありません。一覧には他の演習のアイテムも表示されていますが、`sales_semantic_model` や `sales_lakehouse`、製造業の Graph ではなく、自分の営業データの Graph を選択します。
 
 3. 左側の **ソース** を展開し、Graph 配下に **SalesDeal**・**SalesReport**・**ReportsOn** が表示されていることを確認します。このエージェントには、比較用の他のデータソースを追加しません。
 
